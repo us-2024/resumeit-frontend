@@ -1,30 +1,29 @@
-import { useEffect, useState, Dispatch, SetStateAction, FC } from 'react'
-import { BiChevronDown } from 'react-icons/bi'
-const MONTHS = [
-    { display: 'Jan', value: 1 },
-    { display: 'Feb', value: 2 },
-    { display: 'Mar', value: 3 },
-    { display: 'Apr', value: 4 },
-    { display: 'May', value: 5 },
-    { display: 'Jun', value: 6 },
-    { display: 'Jul', value: 7 },
-    { display: 'Aug', value: 8 },
-    { display: 'Sep', value: 9 },
-    { display: 'Oct', value: 10 },
-    { display: 'Nov', value: 11 },
-    { display: 'Dec', value: 12 },
-]
+import { Dispatch, SetStateAction, FC } from 'react'
+const MONTHS: any = {
+    1: '01',
+    2: '02',
+    3: '03',
+    4: '04',
+    5: '05',
+    6: '06',
+    7: '07',
+    8: '08',
+    9: '09',
+    10: '10',
+    11: '11',
+    12: '12',
+}
 
 export const DateSelect: FC<{
     gridCols: number
+    placeholder: string
     setMonth: Dispatch<SetStateAction<any>>
     setYear: Dispatch<SetStateAction<any>>
     month: any
     year: any
-}> = ({ setMonth, setYear, month, year, gridCols }) => {
+}> = ({ setMonth, setYear, month, year, gridCols, placeholder }) => {
     function handleChange(e: any) {
         const { value } = e.target
-        console.log(typeof value)
         const arr = value.split('-')
         setYear(parseInt(arr[0]))
         setMonth(parseInt(arr[1]))
@@ -34,9 +33,9 @@ export const DateSelect: FC<{
         <div className={`relative col-span-${gridCols}`}>
             <input
                 type="month"
-                value={`${year}-${month}`}
+                value={`${year}-${MONTHS[month]}`}
                 onChange={handleChange}
-                placeholder="Select from month"
+                placeholder={placeholder}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
         </div>

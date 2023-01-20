@@ -12,7 +12,6 @@ export default async function authHandler(
 
             try {
                 const user = await adminAuth.verifyIdToken(accessToken!)
-                const { email, name, user_id } = user
 
                 res.status(200).json({
                     message: 'User fetched',

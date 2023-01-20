@@ -1,4 +1,3 @@
-import { BuilderNavbar } from '@/components/Builder/BuilderNavbar'
 import { LeftPane } from '@/components/Builder/LeftPane/LeftPane'
 import { RightPane } from '@/components/Builder/RightPane/RightPane'
 

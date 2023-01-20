@@ -1,15 +1,16 @@
 import { BuilderNavbar } from '@/components/Builder/BuilderNavbar'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import NextNProgress from 'nextjs-progressbar'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { AuthProvider } from '@/contexts/auth'
+import { Toaster } from 'react-hot-toast'
 import { Navbar } from '@/components/Common/Navbar'
-import { Home_page } from '@/components/Home/Home_page'
-
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter()
-    const routeName = router.pathname
+    const routeName = router.asPath
         .split('/')
         .pop()!
         .split('-')
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         .toString()
 
     const title = routeName.charAt(0).toUpperCase() + routeName.slice(1)
+
     return (
         <>
             <Head>
@@ -34,13 +36,17 @@ export default function App({ Component, pageProps }: AppProps) {
                     href="/favicon.ico"
                 />
             </Head>
-
-            <BuilderNavbar />
-            <Component {...pageProps} />
-            
-            
-            {router.pathname.includes('/login') ? (null) : (<Navbar/>)}
-            {router.pathname.includes('/login') ? (null) : (<Home_page/>)}
+            <AuthProvider>
+                <Toaster />
+                <NextNProgress options={{ showSpinner: false }} />
+                <BuilderNavbar />
+                {router.pathname.includes('/builder') ? (
+                    <BuilderNavbar />
+                ) : (
+                    <Navbar />
+                )}
+                <Component {...pageProps} />
+            </AuthProvider>
         </>
     )
 }

@@ -51,12 +51,14 @@ export const ExperienceSection: FC<{
                 />
                 <DateSelect
                     gridCols={2}
+                    placeholder="From month"
                     setMonth={setFromMonth}
                     setYear={setFromYear}
                     month={fromMonth}
                     year={fromYear}
                 />
                 <DateSelect
+                    placeholder="To month"
                     gridCols={2}
                     setMonth={setToMonth}
                     setYear={setToYear}
