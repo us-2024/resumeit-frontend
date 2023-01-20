@@ -1,9 +1,9 @@
-import { Template1 } from "@/components/Builder/templates/template1/template1"
+import { TemplateOne } from '@/templates/TemplateOne/TemplateOne'
 
 export default function Builder() {
     return (
-        <div >
-            <Template1/>
+        <div>
+            <TemplateOne />
         </div>
     )
 }
