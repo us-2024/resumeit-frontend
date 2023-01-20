@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { EducationSection } from './EducationSection'
 import { ExperienceSection } from './ExperienceSection'
 import { CertificationsSection } from './CertificationsSection'
@@ -6,6 +6,7 @@ import { LanguagesSection } from './LanguagesSection'
 import { Input } from './Input'
 import { TextArea } from './TextArea'
 import { SkillsSection } from './SkillsSection'
+import { RxPlusCircled } from 'react-icons/rx'
 
 export const LeftPane: FC<{}> = ({}) => {
     //? states
@@ -24,6 +25,8 @@ export const LeftPane: FC<{}> = ({}) => {
 
     // About
     const [about, setAbout] = useState<string>('')
+
+    //? useEffects
 
     return (
         <div className="col-span-2 grid grid-cols-4 gap-3 py-20 overflow-y-auto min-h-screen bg-gray-50 shadow-2xl">
@@ -86,22 +89,86 @@ export const LeftPane: FC<{}> = ({}) => {
                     state={about}
                 />
             </div>
+            <div className="flex items-center px-4 justify-between w-full">
+                <p className="font-semibold text-lg text-primary">Experience</p>
+            </div>
+            {experiences.map((exp) => {
+                return (
+                    <ExperienceSection
+                        key={exp.id}
+                        experience={exp}
+                        experiences={experiences}
+                        setExperiences={setExperiences}
+                    />
+                )
+            })}
             <ExperienceSection
                 experiences={experiences}
                 setExperiences={setExperiences}
             />
+            <div className="flex items-center px-4 justify-between w-full">
+                <p className="font-semibold text-lg text-primary">Education</p>
+            </div>
+            {educations.map((education: any) => {
+                return (
+                    <EducationSection
+                        key={education.id}
+                        education={education}
+                        educations={educations}
+                        setEducations={setEducations}
+                    />
+                )
+            })}
             <EducationSection
                 educations={educations}
                 setEducations={setEducations}
             />
+            <div className="flex items-center px-4 justify-between w-full">
+                <p className="font-semibold text-lg text-primary">
+                    Cerifications
+                </p>
+            </div>
+            {certifications.map((certification: any) => {
+                return (
+                    <CertificationsSection
+                        key={certification.id}
+                        certification={certification}
+                        certifications={certifications}
+                        setCertifications={setCertifications}
+                    />
+                )
+            })}
             <CertificationsSection
                 certifications={certifications}
                 setCertifications={setCertifications}
             />
+            <div className="flex items-center px-4 justify-between w-full">
+                <p className="font-semibold text-lg text-primary">Languages</p>
+            </div>
+            {languages.map((language: any) => {
+                return (
+                    <LanguagesSection
+                        key={language.id}
+                        language={language}
+                        languages={languages}
+                        setLanguages={setLanguages}
+                    />
+                )
+            })}
             <LanguagesSection
                 languages={languages}
                 setLanguages={setLanguages}
             />
+            {skills.map((skill) => {
+                return (
+                    <SkillsSection
+                        key={skill.id}
+                        skill={skill}
+                        skills={skills}
+                        setSkills={setSkills}
+                    />
+                )
+            })}
             <SkillsSection
                 skills={skills}
                 setSkills={setSkills}
