@@ -7,7 +7,10 @@ import { Skills } from './components/Skills'
 
 export const TemplateOne: FC<{ data?: any }> = ({ data }) => {
     return (
-        <div className="flex flex-col w-full">
+        <div
+            id="templateOne"
+            className="flex flex-col gap-3 w-full"
+        >
             <Header data={data.personal} />
             <br></br>
             <Education data={data.educations} />

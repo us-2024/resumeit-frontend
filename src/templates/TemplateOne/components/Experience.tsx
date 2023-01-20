@@ -1,31 +1,61 @@
 import { FC } from 'react'
 import { useState } from 'react'
 export const Experience: FC<{ data?: any }> = ({ data }) => {
-    const [company_name, setCompanyName] = useState('Microsoft')
+    const [companyName, setCompanyName] = useState('Microsoft')
     const [desc, setDesc] = useState('Description')
     return (
         <div className="mt-2 p-2">
             <h2 className="border-b-2 text-xl font-bold border-black">
                 Experience
             </h2>
-            <div className="p-4">
-                <p>{company_name}</p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sint obcaecati hic impedit consequatur. Aliquam quisquam
-                    voluptatum explicabo repellendus? Tempore, accusantium ex?
-                    Doloribus eveniet at id excepturi, vel nam ad delectus?
-                </p>
-            </div>
-            <div className="p-4">
-                <p>{company_name}</p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sint obcaecati hic impedit consequatur. Aliquam quisquam
-                    voluptatum explicabo repellendus? Tempore, accusantium ex?
-                    Doloribus eveniet at id excepturi, vel nam ad delectus?
-                </p>
-            </div>
+            {data && data.length ? (
+                data.map((exp: any, index: any) => {
+                    return (
+                        <div
+                            key={index}
+                            className="flex flex-col gap-2"
+                        >
+                            <div className="flex justify-between items-center">
+                                <div className="flex flex-col gap-2">
+                                    {exp.companyName}
+                                    {exp.location}
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    {exp.location}
+                                    <div>
+                                        {exp.fromMonth}, {exp.fromYear} -{' '}
+                                        {exp.toMonth}, {exp.toYear}
+                                    </div>
+                                </div>
+                            </div>
+                            <p>{exp.description}</p>
+                        </div>
+                    )
+                })
+            ) : (
+                <div className="flex flex-col gap-2">
+                    <div className="p-4">
+                        <p>{companyName}</p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Sint obcaecati hic impedit consequatur.
+                            Aliquam quisquam voluptatum explicabo repellendus?
+                            Tempore, accusantium ex? Doloribus eveniet at id
+                            excepturi, vel nam ad delectus?
+                        </p>
+                    </div>
+                    <div className="p-4">
+                        <p>{companyName}</p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Sint obcaecati hic impedit consequatur.
+                            Aliquam quisquam voluptatum explicabo repellendus?
+                            Tempore, accusantium ex? Doloribus eveniet at id
+                            excepturi, vel nam ad delectus?
+                        </p>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

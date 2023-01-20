@@ -122,7 +122,7 @@ export const ProjectsSection: FC<{
                     inputName="name"
                     inputType="text"
                     labelName="Name"
-                    disabled={projects && !isEdit}
+                    disabled={project && !isEdit}
                     setState={setName}
                     state={name}
                 />
@@ -132,7 +132,7 @@ export const ProjectsSection: FC<{
                     inputName="url"
                     inputType="text"
                     labelName="URL"
-                    disabled={projects && !isEdit}
+                    disabled={project && !isEdit}
                     setState={setUrl}
                     state={url}
                 />
@@ -142,7 +142,7 @@ export const ProjectsSection: FC<{
                     inputName="url"
                     inputType="text"
                     labelName="URL"
-                    disabled={projects && !isEdit}
+                    disabled={project && !isEdit}
                     setState={setDescription}
                     state={description}
                 />

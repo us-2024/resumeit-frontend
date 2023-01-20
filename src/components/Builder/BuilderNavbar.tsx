@@ -4,6 +4,7 @@ import { FiDownload, FiLogOut } from 'react-icons/fi'
 import { BsFileEarmarkPdf } from 'react-icons/bs'
 import { AiOutlineHtml5 } from 'react-icons/ai'
 import { AiOutlineFileWord } from 'react-icons/ai'
+import { convertToPDF } from '@/utils/convertToPDF'
 
 export const BuilderNavbar: FC<{}> = ({}) => {
     //? states
@@ -25,7 +26,10 @@ export const BuilderNavbar: FC<{}> = ({}) => {
                 </button>
                 {showDownloadOptions && (
                     <div className="absolute text-tertiary top-[4rem] right-4 z-50 bg-gray-50 shadow-xl py-2 rounded-xl flex flex-col items-center justify-center">
-                        <div className="px-5 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 justify-center items-center ">
+                        <div
+                            onClick={convertToPDF}
+                            className="px-5 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 justify-center items-center "
+                        >
                             <BsFileEarmarkPdf className="h-6 w-6 text-gray-800" />
                             <p className="font-semibold ">PDF</p>
                         </div>
