@@ -7,24 +7,10 @@ import { Input } from './Input'
 import { TextArea } from './TextArea'
 import { SkillsSection } from './SkillsSection'
 import { RxPlusCircled } from 'react-icons/rx'
+import { ProjectsSection } from './ProjectsSection'
 
-export const LeftPane: FC<{}> = ({}) => {
+export const LeftPane: FC<{ data: any }> = ({ data }) => {
     //? states
-    const [experiences, setExperiences] = useState<any[]>([])
-    const [educations, setEducations] = useState<any[]>([])
-    const [certifications, setCertifications] = useState<any[]>([])
-    const [languages, setLanguages] = useState<any[]>([])
-    const [skills, setSkills] = useState<any[]>([])
-
-    // Personal
-    const [name, setName] = useState<string>('')
-    const [email, setEmail] = useState<string>('')
-    const [phoneNumber, setPhoneNumber] = useState<number | null>(null)
-    const [address, setAddress] = useState<string>('')
-    const [pinCode, setPinCode] = useState<number | null>(null)
-
-    // About
-    const [about, setAbout] = useState<string>('')
 
     //? useEffects
 
@@ -40,8 +26,8 @@ export const LeftPane: FC<{}> = ({}) => {
                     inputType="text"
                     placeholder="e.g. Elon Musk"
                     labelName="Name"
-                    state={name}
-                    setState={setName}
+                    state={data.personal.name}
+                    setState={data.personal.setName}
                 />
                 <Input
                     inputName="email"
@@ -49,8 +35,8 @@ export const LeftPane: FC<{}> = ({}) => {
                     placeholder="e.g. elonmusk@tesla.com"
                     inputType="email"
                     labelName="Email"
-                    state={email}
-                    setState={setEmail}
+                    state={data.personal.email}
+                    setState={data.personal.setEmail}
                 />
                 <Input
                     inputName="phoneNumber"
@@ -58,8 +44,8 @@ export const LeftPane: FC<{}> = ({}) => {
                     gridCols={2}
                     inputType="text"
                     labelName="Contact Number"
-                    state={phoneNumber}
-                    setState={setPhoneNumber}
+                    state={data.personal.phoneNumber}
+                    setState={data.personal.setPhoneNumber}
                 />
                 <Input
                     inputName="pinCode"
@@ -67,8 +53,8 @@ export const LeftPane: FC<{}> = ({}) => {
                     gridCols={2}
                     inputType="text"
                     labelName="Pin Code"
-                    state={pinCode}
-                    setState={setPinCode}
+                    state={data.personal.pinCode}
+                    setState={data.personal.setPinCode}
                 />
                 <Input
                     gridCols={4}
@@ -76,8 +62,8 @@ export const LeftPane: FC<{}> = ({}) => {
                     placeholder="e.g. 310, XYZ City, India"
                     inputType="address"
                     labelName="Address"
-                    state={address}
-                    setState={setAddress}
+                    state={data.personal.address}
+                    setState={data.personal.setAddress}
                 />
                 <TextArea
                     gridCols={4}
@@ -85,96 +71,114 @@ export const LeftPane: FC<{}> = ({}) => {
                     inputType="text"
                     labelName="About"
                     placeholder="e.g. I am a passionate Software Developer..."
-                    setState={setAbout}
-                    state={about}
+                    setState={data.personal.setAbout}
+                    state={data.personal.about}
                 />
             </div>
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">Experience</p>
             </div>
-            {experiences.map((exp) => {
+            {data.experiences.map((exp: any) => {
                 return (
                     <ExperienceSection
                         key={exp.id}
                         experience={exp}
-                        experiences={experiences}
-                        setExperiences={setExperiences}
+                        experiences={data.experiences}
+                        setExperiences={data.setExperiences}
                     />
                 )
             })}
             <ExperienceSection
-                experiences={experiences}
-                setExperiences={setExperiences}
+                experiences={data.experiences}
+                setExperiences={data.setExperiences}
             />
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">Education</p>
             </div>
-            {educations.map((education: any) => {
+            {data.educations.map((education: any) => {
                 return (
                     <EducationSection
                         key={education.id}
                         education={education}
-                        educations={educations}
-                        setEducations={setEducations}
+                        educations={data.educations}
+                        setEducations={data.setEducations}
                     />
                 )
             })}
             <EducationSection
-                educations={educations}
-                setEducations={setEducations}
+                educations={data.educations}
+                setEducations={data.setEducations}
+            />
+            <div className="flex items-center px-4 justify-between w-full">
+                <p className="font-semibold text-lg text-primary">Projects</p>
+            </div>
+            {data.projects.map((project: any) => {
+                return (
+                    <ProjectsSection
+                        key={project.id}
+                        project={project}
+                        projects={data.projects}
+                        setProjects={data.setProjects}
+                    />
+                )
+            })}
+            <ProjectsSection
+                projects={data.projects}
+                setProjects={data.setProjects}
             />
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">
                     Cerifications
                 </p>
             </div>
-            {certifications.map((certification: any) => {
+            {data.certifications.map((certification: any) => {
                 return (
                     <CertificationsSection
                         key={certification.id}
                         certification={certification}
-                        certifications={certifications}
-                        setCertifications={setCertifications}
+                        certifications={data.certifications}
+                        setCertifications={data.setCertifications}
                     />
                 )
             })}
             <CertificationsSection
-                certifications={certifications}
-                setCertifications={setCertifications}
+                certifications={data.certifications}
+                setCertifications={data.setCertifications}
             />
+
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">Languages</p>
             </div>
-            {languages.map((language: any) => {
+            {data.languages.map((language: any) => {
                 return (
                     <LanguagesSection
                         key={language.id}
                         language={language}
-                        languages={languages}
-                        setLanguages={setLanguages}
+                        languages={data.languages}
+                        setLanguages={data.setLanguages}
                     />
                 )
             })}
             <LanguagesSection
-                languages={languages}
-                setLanguages={setLanguages}
+                languages={data.languages}
+                setLanguages={data.setLanguages}
             />
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">Skills</p>
             </div>
-            {skills.map((skill) => {
+            {data.skills.map((skill: any) => {
                 return (
                     <SkillsSection
                         key={skill.id}
                         skill={skill}
-                        skills={skills}
-                        setSkills={setSkills}
+                        skills={data.skills}
+                        setSkills={data.setSkills}
                     />
                 )
             })}
             <SkillsSection
-                skills={skills}
-                setSkills={setSkills}
+                skills={data.skills}
+                setSkills={data.setSkills}
             />
         </div>
     )

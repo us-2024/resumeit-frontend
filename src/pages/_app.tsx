@@ -36,19 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
                     href="/favicon.ico"
                 />
             </Head>
-<<<<<<< HEAD
-            {router.pathname.includes('/template') ? (null) : (<BuilderNavbar/>)}
-            
-            <Component {...pageProps} />
-            {router.pathname.includes('/template') ? (null) : (<Home_page/>)}
-            {router.pathname.includes('/template') ? (null) : (<Navbar/>)}
-            {/* {router.pathname.includes('/login') ? (null) : (<Navbar/>)} */}
-            {/* {router.pathname.includes('/login') ? (null) : (<Home_page/>)} */}
-=======
             <AuthProvider>
                 <Toaster />
                 <NextNProgress options={{ showSpinner: false }} />
-                <BuilderNavbar />
                 {router.pathname.includes('/builder') ? (
                     <BuilderNavbar />
                 ) : (
@@ -56,7 +46,6 @@ export default function App({ Component, pageProps }: AppProps) {
                 )}
                 <Component {...pageProps} />
             </AuthProvider>
->>>>>>> 1dbcdbc5d83a93ab29633bf9c95947eaa6938b5e
         </>
     )
 }

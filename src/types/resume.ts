@@ -29,6 +29,11 @@ export interface ResumeProps {
         name: string
         url: string
     }>
+    projects: Array<{
+        name: string
+        url: string
+        description: string
+    }>
     languages: Array<{
         name: string
     }>

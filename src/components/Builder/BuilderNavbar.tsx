@@ -25,15 +25,15 @@ export const BuilderNavbar: FC<{}> = ({}) => {
                 </button>
                 {showDownloadOptions && (
                     <div className="absolute text-tertiary top-[4rem] right-4 z-50 bg-gray-50 shadow-xl py-2 rounded-xl flex flex-col items-center justify-center">
-                        <div className="px-5 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center justify-between">
+                        <div className="px-5 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 justify-center items-center ">
                             <BsFileEarmarkPdf className="h-6 w-6 text-gray-800" />
                             <p className="font-semibold ">PDF</p>
                         </div>
-                        <div className="px-8 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center justify-between">
+                        <div className="px-8 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center ">
                             <AiOutlineHtml5 className="h-6 w-6 text-gray-800" />
                             <p className="font-semibold ">HTML</p>
                         </div>
-                        <div className="px-8 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center justify-between">
+                        <div className="px-8 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center ">
                             <AiOutlineFileWord className="h-6 w-6 text-gray-800" />
                             <p className="font-semibold ">Word</p>
                         </div>

@@ -20,7 +20,7 @@ export default function Home() {
                 </p>
                 <br />
                 <Link href="/auth">
-                    <button className="bg-sky-200 rounded border-2 hover:bg-sky-50">
+                    <button className="bg-sky-200 font-semibold p-2 rounded border-2 hover:bg-sky-50">
                         Create Your Resume
                     </button>
                 </Link>
