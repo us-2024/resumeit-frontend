@@ -109,7 +109,7 @@ export const LeftPane: FC<{ data: any }> = ({ data }) => {
                 educations={data.educations}
                 setEducations={data.setEducations}
             />
-            <div className="flex items-center px-4 justify-between w-full">
+            {/* <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">Projects</p>
             </div>
             {data.projects.map((project: any) => {
@@ -125,7 +125,7 @@ export const LeftPane: FC<{ data: any }> = ({ data }) => {
             <ProjectsSection
                 projects={data.projects}
                 setProjects={data.setProjects}
-            />
+            /> */}
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">
                     Cerifications

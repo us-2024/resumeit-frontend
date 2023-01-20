@@ -8,12 +8,12 @@ import { Skills } from './components/Skills'
 export const TemplateOne: FC<{ data?: any }> = ({ data }) => {
     return (
         <div className="flex flex-col w-full">
-            <Header />
+            <Header data={data.personal} />
             <br></br>
-            <Education />
-            <Experience />
-            <Project />
-            <Skills />
+            <Education data={data.educations} />
+            <Experience data={data.experiences} />
+            <Project data={data.projects} />
+            <Skills data={data.skills} />
         </div>
     )
 }

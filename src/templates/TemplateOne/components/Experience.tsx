@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useState } from 'react'
 export const Experience: FC<{ data?: any }> = ({ data }) => {
     const [company_name, setCompanyName] = useState('Microsoft')
-    const [desc, setDesc] = useState('Lo')
+    const [desc, setDesc] = useState('Description')
     return (
         <div className="mt-2 p-2">
             <h2 className="border-b-2 text-xl font-bold border-black">

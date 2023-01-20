@@ -5,6 +5,8 @@ import { RxPlusCircled } from 'react-icons/rx'
 import { toast } from 'react-hot-toast'
 import { v4 as uuidv4 } from 'uuid'
 import { TextArea } from './TextArea'
+import { TiTickOutline } from 'react-icons/ti'
+import { BsPencilSquare } from 'react-icons/bs'
 
 export const ProjectsSection: FC<{
     projects: Array<any>
@@ -15,8 +17,27 @@ export const ProjectsSection: FC<{
     const [name, setName] = useState<string>('')
     const [url, setUrl] = useState<string>('')
     const [description, setDescription] = useState<string>('')
+    const [isEdit, setIsEdit] = useState<boolean>(false)
 
     //? functions
+    const editProjects = (id: string) => {
+        setProjects((prevEdus: any) => {
+            const newEdus = prevEdus.map((prevEdu: any) => {
+                if (prevEdu.id === id) {
+                    return {
+                        id,
+                        name,
+                        url,
+                        description,
+                    }
+                } else return prevEdu
+            })
+
+            return newEdus
+        })
+        setIsEdit(false)
+    }
+
     const addProject = () => {
         if (name || url) {
             setProjects((prevEdus: any) => {
@@ -24,12 +45,14 @@ export const ProjectsSection: FC<{
                     id: uuidv4(),
                     name,
                     url,
+                    description,
                 }
                 return [...prevEdus, newExp]
             })
 
             setName('')
             setUrl('')
+            setDescription('')
         } else {
             toast.error('Please fill the details before adding next section')
         }
@@ -58,14 +81,29 @@ export const ProjectsSection: FC<{
         >
             <div className="flex w-full justify-end">
                 {project ? (
-                    <div className="flex items-center gap-1">
-                        <button className="p-2 rounded-full hover:bg-gray-200 duration-150">
-                            <RiDeleteBin5Line
-                                onClick={() => deleteProject(project.id)}
-                                className="h-6 w-6 text-red-500"
-                            />
+                    isEdit ? (
+                        <div className="flex items-center">
+                            <button className="p-2 rounded-full hover:bg-gray-300 duration-150">
+                                <RiDeleteBin5Line
+                                    onClick={() => deleteProject(project.id)}
+                                    className="h-6 w-6 text-red-500"
+                                />
+                            </button>
+                            <button
+                                onClick={() => editProjects(project.id)}
+                                className="p-1 rounded-full hover:bg-gray-300 duration-150"
+                            >
+                                <TiTickOutline className="text-green-500 h-8 w-8" />
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={() => setIsEdit(true)}
+                            className="p-2 rounded-full hover:bg-gray-300 duration-150"
+                        >
+                            <BsPencilSquare />
                         </button>
-                    </div>
+                    )
                 ) : (
                     <div className="flex items-center gap-1">
                         <button
@@ -84,6 +122,7 @@ export const ProjectsSection: FC<{
                     inputName="name"
                     inputType="text"
                     labelName="Name"
+                    disabled={projects && !isEdit}
                     setState={setName}
                     state={name}
                 />
@@ -93,6 +132,7 @@ export const ProjectsSection: FC<{
                     inputName="url"
                     inputType="text"
                     labelName="URL"
+                    disabled={projects && !isEdit}
                     setState={setUrl}
                     state={url}
                 />
@@ -102,6 +142,7 @@ export const ProjectsSection: FC<{
                     inputName="url"
                     inputType="text"
                     labelName="URL"
+                    disabled={projects && !isEdit}
                     setState={setDescription}
                     state={description}
                 />

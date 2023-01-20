@@ -24,6 +24,7 @@ export const DateSelect: FC<{
     year: any
 }> = ({ setMonth, setYear, disabled, month, year, gridCols, placeholder }) => {
     //? functions
+    console.log(month, year)
     function handleChange(e: any) {
         const { value } = e.target
         const arr = value.split('-')
@@ -38,8 +39,8 @@ export const DateSelect: FC<{
                 disabled={disabled}
                 value={year && month ? `${year}-${MONTHS[month]}` : undefined}
                 onChange={handleChange}
-                // placeholder={placeholder}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder={placeholder}
+                className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
         </div>
     )

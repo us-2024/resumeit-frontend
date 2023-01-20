@@ -4,6 +4,8 @@ import { RiDeleteBin5Line } from 'react-icons/ri'
 import { RxPlusCircled } from 'react-icons/rx'
 import { toast } from 'react-hot-toast'
 import { v4 as uuidv4 } from 'uuid'
+import { TiTickOutline } from 'react-icons/ti'
+import { BsPencilSquare } from 'react-icons/bs'
 
 export const CertificationsSection: FC<{
     certifications: Array<any>
@@ -13,8 +15,25 @@ export const CertificationsSection: FC<{
     //? states
     const [name, setName] = useState<string>('')
     const [url, setUrl] = useState<string>('')
+    const [isEdit, setIsEdit] = useState<boolean>(false)
 
     //? functions
+    const editCertifications = (id: string) => {
+        setCertifications((prevEdus: any) => {
+            const newEdus = prevEdus.map((prevEdu: any) => {
+                if (prevEdu.id === id) {
+                    return {
+                        id,
+                        name,
+                        url,
+                    }
+                } else return prevEdu
+            })
+
+            return newEdus
+        })
+        setIsEdit(false)
+    }
     const addCertification = () => {
         if (name || url) {
             setCertifications((prevEdus: any) => {
@@ -55,16 +74,33 @@ export const CertificationsSection: FC<{
         >
             <div className="flex w-full justify-end">
                 {certification ? (
-                    <div className="flex items-center gap-1">
-                        <button className="p-2 rounded-full hover:bg-gray-200 duration-150">
-                            <RiDeleteBin5Line
+                    isEdit ? (
+                        <div className="flex items-center">
+                            <button className="p-2 rounded-full hover:bg-gray-300 duration-150">
+                                <RiDeleteBin5Line
+                                    onClick={() =>
+                                        deleteCertification(certification.id)
+                                    }
+                                    className="h-6 w-6 text-red-500"
+                                />
+                            </button>
+                            <button
                                 onClick={() =>
-                                    deleteCertification(certification.id)
+                                    editCertifications(certification.id)
                                 }
-                                className="h-6 w-6 text-red-500"
-                            />
+                                className="p-1 rounded-full hover:bg-gray-300 duration-150"
+                            >
+                                <TiTickOutline className="text-green-500 h-8 w-8" />
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={() => setIsEdit(true)}
+                            className="p-2 rounded-full hover:bg-gray-300 duration-150"
+                        >
+                            <BsPencilSquare />
                         </button>
-                    </div>
+                    )
                 ) : (
                     <div className="flex items-center gap-1">
                         <button
@@ -83,6 +119,7 @@ export const CertificationsSection: FC<{
                     inputName="name"
                     inputType="text"
                     labelName="Name"
+                    disabled={certification && !isEdit}
                     setState={setName}
                     state={name}
                 />
@@ -92,6 +129,7 @@ export const CertificationsSection: FC<{
                     inputName="url"
                     inputType="text"
                     labelName="URL"
+                    disabled={certification && !isEdit}
                     setState={setUrl}
                     state={url}
                 />

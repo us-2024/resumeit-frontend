@@ -4,6 +4,8 @@ import { RxPlusCircled } from 'react-icons/rx'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-hot-toast'
+import { TiTickOutline } from 'react-icons/ti'
+import { BsPencilSquare } from 'react-icons/bs'
 
 export const LanguagesSection: FC<{
     languages: Array<any>
@@ -11,8 +13,24 @@ export const LanguagesSection: FC<{
     setLanguages: Dispatch<SetStateAction<any>>
 }> = ({ language, languages, setLanguages }) => {
     const [name, setName] = useState<string>('')
+    const [isEdit, setIsEdit] = useState<boolean>(false)
 
     //? functions
+    const editProject = (id: string) => {
+        setLanguages((prevEdus: any) => {
+            const newEdus = prevEdus.map((prevEdu: any) => {
+                if (prevEdu.id === id) {
+                    return {
+                        id,
+                        name,
+                    }
+                } else return prevEdu
+            })
+
+            return newEdus
+        })
+        setIsEdit(false)
+    }
     const addLanguage = () => {
         if (name) {
             setLanguages((prevEdus: any) => {
@@ -52,14 +70,31 @@ export const LanguagesSection: FC<{
             <div className="flex items-center justify-between w-full">
                 <div className="flex w-full justify-end">
                     {language ? (
-                        <div className="flex items-center gap-1">
-                            <button className="p-2 rounded-full hover:bg-gray-200 duration-150">
-                                <RiDeleteBin5Line
-                                    onClick={() => deleteLanguage(language.id)}
-                                    className="h-6 w-6 text-red-500"
-                                />
+                        isEdit ? (
+                            <div className="flex items-center">
+                                <button className="p-2 rounded-full hover:bg-gray-300 duration-150">
+                                    <RiDeleteBin5Line
+                                        onClick={() =>
+                                            deleteLanguage(language.id)
+                                        }
+                                        className="h-6 w-6 text-red-500"
+                                    />
+                                </button>
+                                <button
+                                    onClick={() => editProject(language.id)}
+                                    className="p-1 rounded-full hover:bg-gray-300 duration-150"
+                                >
+                                    <TiTickOutline className="text-green-500 h-8 w-8" />
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                onClick={() => setIsEdit(true)}
+                                className="p-2 rounded-full hover:bg-gray-300 duration-150"
+                            >
+                                <BsPencilSquare />
                             </button>
-                        </div>
+                        )
                     ) : (
                         <div className="flex items-center gap-1">
                             <button
@@ -77,6 +112,7 @@ export const LanguagesSection: FC<{
                     placeholder="e.g. Hindi"
                     gridCols={2}
                     inputName="language"
+                    disabled={language && !isEdit}
                     inputType="text"
                     labelName="Language"
                     setState={setName}

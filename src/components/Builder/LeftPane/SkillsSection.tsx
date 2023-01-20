@@ -4,6 +4,8 @@ import { RxPlusCircled } from 'react-icons/rx'
 import { Input } from './Input'
 import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'react-hot-toast'
+import { TiTickOutline } from 'react-icons/ti'
+import { BsPencilSquare } from 'react-icons/bs'
 
 export const SkillsSection: FC<{
     skills: Array<any>
@@ -12,8 +14,24 @@ export const SkillsSection: FC<{
 }> = ({ skills, setSkills, skill }) => {
     //? states
     const [name, setName] = useState<string>('')
+    const [isEdit, setIsEdit] = useState<boolean>(false)
 
     //? functions
+    const editSkill = (id: string) => {
+        setSkills((prevEdus: any) => {
+            const newEdus = prevEdus.map((prevEdu: any) => {
+                if (prevEdu.id === id) {
+                    return {
+                        id,
+                        name,
+                    }
+                } else return prevEdu
+            })
+
+            return newEdus
+        })
+        setIsEdit(false)
+    }
     const addSkill = () => {
         if (name) {
             setSkills((prevEdus: any) => {
@@ -51,14 +69,29 @@ export const SkillsSection: FC<{
         >
             <div className="flex w-full justify-end">
                 {skill ? (
-                    <div className="flex items-center gap-1">
-                        <button className="p-2 rounded-full hover:bg-gray-200 duration-150">
-                            <RiDeleteBin5Line
-                                onClick={() => deleteSkill(skill.id)}
-                                className="h-6 w-6 text-red-500"
-                            />
+                    isEdit ? (
+                        <div className="flex items-center">
+                            <button className="p-2 rounded-full hover:bg-gray-300 duration-150">
+                                <RiDeleteBin5Line
+                                    onClick={() => deleteSkill(skill.id)}
+                                    className="h-6 w-6 text-red-500"
+                                />
+                            </button>
+                            <button
+                                onClick={() => editSkill(skill.id)}
+                                className="p-1 rounded-full hover:bg-gray-300 duration-150"
+                            >
+                                <TiTickOutline className="text-green-500 h-8 w-8" />
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={() => setIsEdit(true)}
+                            className="p-2 rounded-full hover:bg-gray-300 duration-150"
+                        >
+                            <BsPencilSquare />
                         </button>
-                    </div>
+                    )
                 ) : (
                     <div className="flex items-center gap-1">
                         <button
@@ -77,6 +110,7 @@ export const SkillsSection: FC<{
                     inputName="skill"
                     inputType="text"
                     labelName="Skill"
+                    disabled={skill && !isEdit}
                     setState={setName}
                     state={name}
                 />

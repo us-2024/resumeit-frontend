@@ -8,6 +8,7 @@ export interface ResumeProps {
     }
     experience: Array<{
         company_name: string
+        job_role: string
         location: string
         from_year: string
         to_year: string
