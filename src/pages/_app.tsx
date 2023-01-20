@@ -2,6 +2,9 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { Navbar } from '@/components/Common/Navbar'
+import { Home_page } from '@/components/Home/Home_page'
+
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter()
@@ -31,6 +34,10 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
             </Head>
             <Component {...pageProps} />
+            
+            
+            {router.pathname.includes('/login') ? (null) : (<Navbar/>)}
+            {router.pathname.includes('/login') ? (null) : (<Home_page/>)}
         </>
     )
 }
