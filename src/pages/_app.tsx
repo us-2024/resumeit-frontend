@@ -34,13 +34,13 @@ export default function App({ Component, pageProps }: AppProps) {
                     href="/favicon.ico"
                 />
             </Head>
-
-            <BuilderNavbar />
+            {router.pathname.includes('/template') ? (null) : (<BuilderNavbar/>)}
+            
             <Component {...pageProps} />
-            
-            
-            {router.pathname.includes('/login') ? (null) : (<Navbar/>)}
-            {router.pathname.includes('/login') ? (null) : (<Home_page/>)}
+            {router.pathname.includes('/template') ? (null) : (<Home_page/>)}
+            {router.pathname.includes('/template') ? (null) : (<Navbar/>)}
+            {/* {router.pathname.includes('/login') ? (null) : (<Navbar/>)} */}
+            {/* {router.pathname.includes('/login') ? (null) : (<Home_page/>)} */}
         </>
     )
 }
