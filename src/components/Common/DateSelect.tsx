@@ -17,11 +17,13 @@ const MONTHS: any = {
 export const DateSelect: FC<{
     gridCols: number
     placeholder: string
+    disabled?: boolean
     setMonth: Dispatch<SetStateAction<any>>
     setYear: Dispatch<SetStateAction<any>>
     month: any
     year: any
-}> = ({ setMonth, setYear, month, year, gridCols, placeholder }) => {
+}> = ({ setMonth, setYear, disabled, month, year, gridCols, placeholder }) => {
+    //? functions
     function handleChange(e: any) {
         const { value } = e.target
         const arr = value.split('-')
@@ -33,9 +35,10 @@ export const DateSelect: FC<{
         <div className={`relative col-span-${gridCols}`}>
             <input
                 type="month"
-                value={`${year}-${MONTHS[month]}`}
+                disabled={disabled}
+                value={year && month ? `${year}-${MONTHS[month]}` : undefined}
                 onChange={handleChange}
-                placeholder={placeholder}
+                // placeholder={placeholder}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
         </div>

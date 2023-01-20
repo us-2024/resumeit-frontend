@@ -7,7 +7,7 @@ let urls = {
 }
 
 export const api = axios.create({
-    baseURL: urls[process.env.NODE_ENV],
+    baseURL: `https://resumeit.onrender.app`,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
