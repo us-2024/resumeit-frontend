@@ -5,6 +5,7 @@ import { CertificationsSection } from './CertificationsSection'
 import { LanguagesSection } from './LanguagesSection'
 import { Input } from './Input'
 import { TextArea } from './TextArea'
+import { SkillsSection } from './SkillsSection'
 
 export const LeftPane: FC<{}> = ({}) => {
     //? states
@@ -25,7 +26,7 @@ export const LeftPane: FC<{}> = ({}) => {
     const [about, setAbout] = useState<string>('')
 
     return (
-        <div className="col-span-2 grid grid-cols-4 gap-3 py-20 overflow-y-auto min-h-screen bg-gray-50">
+        <div className="col-span-2 grid grid-cols-4 gap-3 py-20 overflow-y-auto min-h-screen bg-gray-50 shadow-2xl">
             <div className="grid grid-cols-4 col-span-4 px-4 gap-3">
                 <p className="col-span-4 text-lg text-primary font-semibold">
                     Personal Information
@@ -100,6 +101,10 @@ export const LeftPane: FC<{}> = ({}) => {
             <LanguagesSection
                 languages={languages}
                 setLanguages={setLanguages}
+            />
+            <SkillsSection
+                skills={skills}
+                setSkills={setSkills}
             />
         </div>
     )

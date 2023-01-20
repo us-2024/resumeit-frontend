@@ -3,6 +3,7 @@ import { Input } from './Input'
 import { RxPlusCircled } from 'react-icons/rx'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { TextArea } from './TextArea'
+import { DateSelect } from '@/components/Common/DateSelect'
 
 export const ExperienceSection: FC<{
     experiences: Array<any>
@@ -10,8 +11,10 @@ export const ExperienceSection: FC<{
 }> = ({ experiences, setExperiences }) => {
     const [companyName, setCompanyName] = useState<string>('')
     const [location, setLocation] = useState<string>('')
-    const [from, setFrom] = useState<number | null>(null)
-    const [to, setTo] = useState<number | null>(null)
+    const [fromMonth, setFromMonth] = useState<number | null>(null)
+    const [toMonth, setToMonth] = useState<number | null>(null)
+    const [fromYear, setFromYear] = useState<number | null>(null)
+    const [toYear, setToYear] = useState<number | null>(null)
     const [description, setDescription] = useState<string>('')
 
     return (
@@ -46,23 +49,19 @@ export const ExperienceSection: FC<{
                     setState={setLocation}
                     state={location}
                 />
-                <Input
-                    placeholder="e.g. May, 2022"
+                <DateSelect
                     gridCols={2}
-                    inputName="from"
-                    inputType="text"
-                    labelName="From"
-                    setState={setFrom}
-                    state={from}
+                    setMonth={setFromMonth}
+                    setYear={setFromYear}
+                    month={fromMonth}
+                    year={fromYear}
                 />
-                <Input
-                    placeholder="e.g. July, 2022"
+                <DateSelect
                     gridCols={2}
-                    inputName="to"
-                    inputType="text"
-                    labelName="To"
-                    setState={setTo}
-                    state={to}
+                    setMonth={setToMonth}
+                    setYear={setToYear}
+                    month={toMonth}
+                    year={toYear}
                 />
                 <TextArea
                     gridCols={4}
