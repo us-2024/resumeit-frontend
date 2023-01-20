@@ -159,6 +159,9 @@ export const LeftPane: FC<{}> = ({}) => {
                 languages={languages}
                 setLanguages={setLanguages}
             />
+            <div className="flex items-center px-4 justify-between w-full">
+                <p className="font-semibold text-lg text-primary">Skills</p>
+            </div>
             {skills.map((skill) => {
                 return (
                     <SkillsSection
