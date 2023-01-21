@@ -24,7 +24,7 @@ export default function Builder() {
     const [address, setAddress] = useState<string>('')
     const [pinCode, setPinCode] = useState<string>('')
     const [website, setWebsite] = useState<string>('')
-
+    const [showModal, setShowModal] = useState<boolean>(false)
     const [experiences, setExperiences] = useState<any[]>([])
     const [educations, setEducations] = useState<any[]>([])
     const [certifications, setCertifications] = useState<any[]>([])
@@ -102,7 +102,11 @@ export default function Builder() {
 
     return (
         <div className="grid grid-cols-5 w-full">
-            <BuilderNavbar resumeHandler={addResumeHandler} />
+            <BuilderNavbar
+                resumeHandler={addResumeHandler}
+                setShowModal={setShowModal}
+                showModal={showModal}
+            />
             <LeftPane
                 data={{
                     personal: {
