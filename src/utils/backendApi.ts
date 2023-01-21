@@ -7,7 +7,7 @@ let urls = {
 }
 
 export const backendApi = axios.create({
-    baseURL: `http://localhost:8000`,
+    baseURL: `https://resumeit-api.onrender.com`,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
