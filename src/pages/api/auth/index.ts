@@ -6,7 +6,6 @@ export default async function authHandler(
     res: NextApiResponse
 ) {
     const { method, headers } = req
-    console.log(headers)
     if (headers && headers.authorization) {
         if (method === 'GET') {
             const accessToken = headers.authorization.split(' ')[1]
