@@ -139,9 +139,9 @@ export const ProjectsSection: FC<{
                 <TextArea
                     placeholder="e.g. My project was built on.."
                     gridCols={4}
-                    inputName="url"
+                    inputName="description"
                     inputType="text"
-                    labelName="URL"
+                    labelName="DESCRIPTION"
                     disabled={project && !isEdit}
                     setState={setDescription}
                     state={description}
