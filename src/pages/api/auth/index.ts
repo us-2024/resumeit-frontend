@@ -29,4 +29,9 @@ export default async function authHandler(
             })
         }
     }
+    else {
+        res.status(405).json({
+            message: 'Method Not Allowed',
+        })
+    }
 }
