@@ -9,25 +9,46 @@ export const Modal: FC<{
 }> = ({ setShowModal, showModal }) => {
     const [subject, setSubject] = useState('')
     const [body, setBody] = useState('')
-    const [recieverMail, setReceiverMail] = useState('')
+    const [recieverMailOne, setReceiverMailOne] = useState<string>('')
+    const [recieverMailTwo, setReceiverMailTwo] = useState<string>('')
+    const [recieverMailThree, setReceiverMailThree] = useState<string>('')
+
     return (
         <ModalContainer
             header="Send Email"
             setShowModal={setShowModal}
             showModal={showModal}
         >
-            <div className="grid grid-cols-4 gap-3 w-full p-4">
+            <div className="grid grid-cols-4 gap-2 w-full p-4">
                 <Input
                     gridCols={2}
-                    inputName="Reciever Address"
+                    inputName="Reciever Address 1"
                     inputType="email"
-                    labelName="Reciever Address"
+                    labelName="Reciever Address 1"
                     placeholder="xyz@gmail.com"
-                    setState={setReceiverMail}
-                    state={recieverMail}
+                    setState={setReceiverMailOne}
+                    state={recieverMailOne}
                 />
                 <Input
                     gridCols={2}
+                    inputName="Reciever Address 2"
+                    inputType="email"
+                    labelName="Reciever Address 2"
+                    placeholder="xyz@gmail.com"
+                    setState={setReceiverMailTwo}
+                    state={recieverMailTwo}
+                />
+                <Input
+                    gridCols={4}
+                    inputName="Reciever Address 3"
+                    inputType="email"
+                    labelName="Reciever Address 3"
+                    placeholder="xyz@gmail.com"
+                    setState={setReceiverMailThree}
+                    state={recieverMailThree}
+                />
+                <Input
+                    gridCols={4}
                     inputName="Subject"
                     inputType="text"
                     labelName="Subject"
