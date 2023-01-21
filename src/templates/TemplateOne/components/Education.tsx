@@ -5,10 +5,9 @@ export const Education: FC<{ data?: any }> = ({ data }) => {
     const [degree, setDegree] = useState('Computer Science & Engineering')
     const [period, setPeriod] = useState('2020-2024')
     return (
-        <div className="flex flex-col">
-            <h2 className="border-b-2 font-bold text-xl border-black">
-                Education
-            </h2>
+        <div className="flex flex-col gap-2">
+            <h2 className="font-bold text-xl">Education</h2>
+            <hr className="bg-black h-0.5" />
             <div className="flex flex-col gap-3 pt-3">
                 {data && data.length ? (
                     data.map((education: any) => {

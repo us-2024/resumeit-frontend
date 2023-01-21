@@ -4,10 +4,9 @@ export const Experience: FC<{ data?: any }> = ({ data }) => {
     const [companyName, setCompanyName] = useState('Microsoft')
     const [desc, setDesc] = useState('Description')
     return (
-        <div className="flex flex-col">
-            <h2 className="border-b-2 text-xl font-bold border-black">
-                Experience
-            </h2>
+        <div className="flex flex-col gap-4">
+            <h2 className="text-xl font-bold">Experience</h2>
+            <hr className="bg-black h-0.5" />
             {data && data.length ? (
                 data.map((exp: any, index: any) => {
                     return (

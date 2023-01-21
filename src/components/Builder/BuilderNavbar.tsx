@@ -4,15 +4,24 @@ import { FiDownload, FiLogOut } from 'react-icons/fi'
 import { BsFileEarmarkPdf } from 'react-icons/bs'
 import { AiOutlineHtml5 } from 'react-icons/ai'
 import { AiOutlineFileWord } from 'react-icons/ai'
-import { convertToPDF } from '@/utils/convertToPDF'
 import { useRouter } from 'next/router'
+import { convertPdf } from '@/services/convertPdf'
+import { useAuth } from '@/contexts/auth'
+import { convertURIToBlob } from '@/utils/convertURI2Blob'
+import { html2image } from '@/utils/html2image'
+import { convertToPDF } from '@/utils/convertToPdf'
 
 export const BuilderNavbar: FC<{
     resumeHandler: Function
     showModal: boolean
     setShowModal: Dispatch<SetStateAction<boolean>>
 }> = ({ setShowModal, showModal, resumeHandler }) => {
+    //? router
     const router = useRouter()
+
+    //? auth
+    const { user }: any = useAuth()
+
     //? states
     const [showDownloadOptions, setShowDownloadOptions] =
         useState<boolean>(false)

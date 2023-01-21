@@ -15,7 +15,6 @@ export default function Builder() {
 
     //? states
     const [templateId, setTemplateId] = useState<string>('1')
-    // const [resume, setResume] = useState<any>(null)
 
     // Personal
     const [name, setName] = useState<string>('')
@@ -76,29 +75,6 @@ export default function Builder() {
     }
 
     //? effects
-    // useEffect(() => {
-    //     if (id)
-    //         getResumeById(id)
-    //             .then((res) => {
-    //                 console.log(res)
-    //                 setName(res.data.personal.name)
-    //                 setCertifications(res.data.certifications)
-    //                 setAbout(res.data.personal.about)
-    //                 setAddress(res.data.personal.address)
-    //                 setEducations(res.data.education)
-    //                 setEmail(res.data.personal.email)
-    //                 setExperiences(res.data.experience)
-    //                 setLanguages(res.data.languages)
-    //                 setPinCode(res.data.personal.pinCode)
-    //                 setSkills(res.data.skills)
-    //                 setProjects(res.data.projects)
-    //                 setWebsite(res.data.personal.website)
-    //                 setPhoneNumber(res.data.personal.phoneNumber)
-    //             })
-    //             .catch((err) => console.log(err))
-    // }, [id])
-
-    // console.log(resume)
 
     return (
         <div className="grid grid-cols-5 w-full">

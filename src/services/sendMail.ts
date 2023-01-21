@@ -1,4 +1,3 @@
-import { useAuth } from '@/contexts/auth'
 import { backendApi } from '@/utils/backendApi'
 import { toast } from 'react-hot-toast'
 
@@ -7,22 +6,24 @@ export const sendMail = async (
     reciever_addresses: any,
     subject: string,
     body: string,
-    file: any
+    file: File | Blob
 ) => {
     try {
-        var formData = new FormData()
+        const formData = new FormData()
 
         formData.append('user_id', user_id)
         formData.append('reciever_addresses', reciever_addresses.join(','))
         formData.append('subject', subject)
         formData.append('body', body)
         formData.append('file', file)
-        const { data } = await backendApi.post('/sendemail/', {
+
+        const { data } = await backendApi.post('/sendemail/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         })
-        toast.success(data.Status)
+
+        toast.success('Sent')
     } catch (err: any) {
         toast.error(err.message)
     }

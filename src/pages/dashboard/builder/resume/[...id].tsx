@@ -102,8 +102,6 @@ export default function Builder() {
                 .catch((err) => console.log(err))
     }, [id])
 
-    console.log(resume)
-
     return (
         <div className="grid grid-cols-5 w-full">
             <Modal

@@ -2,16 +2,34 @@ import { ModalContainer } from '@/components/Common/ModalContainer'
 import { FC, useState, Dispatch, SetStateAction } from 'react'
 import { Input } from '../LeftPane/Input'
 import { TextArea } from '../LeftPane/TextArea'
+import { sendMail } from '@/services/sendMail'
+import { useAuth } from '@/contexts/auth'
+import { html2image } from '@/utils/html2image'
 
 export const Modal: FC<{
     showModal: boolean
     setShowModal: Dispatch<SetStateAction<boolean>>
 }> = ({ setShowModal, showModal }) => {
-    const [subject, setSubject] = useState('')
-    const [body, setBody] = useState('')
+    //? auth
+    const { user }: any = useAuth()
+
+    //? states
+    const [subject, setSubject] = useState<string>('')
+    const [body, setBody] = useState<string>('')
     const [recieverMailOne, setReceiverMailOne] = useState<string>('')
     const [recieverMailTwo, setReceiverMailTwo] = useState<string>('')
     const [recieverMailThree, setReceiverMailThree] = useState<string>('')
+
+    //? functions
+    const sendMailHandler = async () => {
+        await sendMail(
+            user.user_id,
+            [recieverMailOne, recieverMailTwo, recieverMailThree],
+            subject,
+            body,
+            await html2image()
+        )
+    }
 
     return (
         <ModalContainer
@@ -66,7 +84,7 @@ export const Modal: FC<{
                     state={body}
                 />
                 <button
-                    onClick={() => setShowModal(true)}
+                    onClick={() => sendMailHandler()}
                     className="rounded-lg font-semibold text-sm px-4 py-2 bg-primary text-white"
                 >
                     Send
