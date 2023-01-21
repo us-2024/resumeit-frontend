@@ -17,10 +17,10 @@ export const ExperienceSection: FC<{
     //? states
     const [companyName, setCompanyName] = useState<string>('')
     const [location, setLocation] = useState<string>('')
-    const [fromMonth, setFromMonth] = useState<number | null>(null)
-    const [toMonth, setToMonth] = useState<number | null>(null)
-    const [fromYear, setFromYear] = useState<number | null>(null)
-    const [toYear, setToYear] = useState<number | null>(null)
+    const [fromMonth, setFromMonth] = useState<string>('')
+    const [toMonth, setToMonth] = useState<string>('')
+    const [fromYear, setFromYear] = useState<string>('')
+    const [toYear, setToYear] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [isEdit, setIsEdit] = useState<boolean>(false)
     const [jobRole, setJobRole] = useState<string>('')
@@ -76,10 +76,10 @@ export const ExperienceSection: FC<{
 
             setCompanyName('')
             setLocation('')
-            setFromMonth(null)
-            setToMonth(null)
-            setFromYear(null)
-            setToYear(null)
+            setFromMonth('')
+            setToMonth('')
+            setFromYear('')
+            setToYear('')
             setDescription('')
             setJobRole('')
         } else {
@@ -96,6 +96,7 @@ export const ExperienceSection: FC<{
     //? effects
     useEffect(() => {
         if (experience) {
+            console.log(experience)
             setCompanyName(experience.companyName)
             setLocation(experience.location)
             setFromMonth(experience.fromMonth)
@@ -184,14 +185,14 @@ export const ExperienceSection: FC<{
                 />
                 <DateSelect
                     gridCols={2}
-                    placeholder="From month"
+                    placeholder="From"
                     setMonth={setFromMonth}
                     setYear={setFromYear}
                     month={fromMonth}
                     year={fromYear}
                 />
                 <DateSelect
-                    placeholder="To month"
+                    placeholder="To"
                     gridCols={2}
                     setMonth={setToMonth}
                     setYear={setToYear}

@@ -4,7 +4,7 @@ export const Experience: FC<{ data?: any }> = ({ data }) => {
     const [companyName, setCompanyName] = useState('Microsoft')
     const [desc, setDesc] = useState('Description')
     return (
-        <div className="mt-2 p-2">
+        <div className="flex flex-col">
             <h2 className="border-b-2 text-xl font-bold border-black">
                 Experience
             </h2>
@@ -16,11 +16,15 @@ export const Experience: FC<{ data?: any }> = ({ data }) => {
                             className="flex flex-col gap-2"
                         >
                             <div className="flex justify-between items-center">
-                                <div className="flex flex-col gap-2">
-                                    {exp.companyName}
-                                    {exp.location}
+                                <div className="flex flex-col">
+                                    <span className="font-semibold bold">
+                                        {exp.companyName}
+                                    </span>
+                                    <span className="italic">
+                                        {exp.jobRole}
+                                    </span>
                                 </div>
-                                <div className="flex flex-col gap-2">
+                                <div className="flex flex-col">
                                     {exp.location}
                                     <div>
                                         {exp.fromMonth}, {exp.fromYear} -{' '}

@@ -6,10 +6,10 @@ export default async function authHandler(
     res: NextApiResponse
 ) {
     const { method, headers } = req
+    console.log(headers)
     if (headers && headers.authorization) {
         if (method === 'GET') {
             const accessToken = headers.authorization.split(' ')[1]
-
             try {
                 const user = await adminAuth.verifyIdToken(accessToken!)
 
@@ -18,6 +18,7 @@ export default async function authHandler(
                     result: user,
                 })
             } catch (err: any) {
+                console.log(err)
                 res.status(405).json({
                     err,
                 })

@@ -9,37 +9,40 @@ export const Education: FC<{ data?: any }> = ({ data }) => {
             <h2 className="border-b-2 font-bold text-xl border-black">
                 Education
             </h2>
-            {data && data.length ? (
-                data.map((education: any) => {
-                    return (
-                        <div
-                            key={education.id}
-                            className="flex flex-col"
-                        >
-                            <div className="flex justify-between p-2">
-                                <p>{education.instituteName}</p>
-                                <p>
-                                    {education.fromMonth}, {education.fromYear}{' '}
-                                    - {education.toMonth}, {education.toYear}
-                                </p>
+            <div className="flex flex-col gap-3 pt-3">
+                {data && data.length ? (
+                    data.map((education: any) => {
+                        return (
+                            <div
+                                key={education.id}
+                                className="flex flex-col"
+                            >
+                                <div className="flex justify-between">
+                                    <p>{education.instituteName}</p>
+                                    <p>
+                                        {education.fromMonth},{' '}
+                                        {education.fromYear} -{' '}
+                                        {education.toMonth}, {education.toYear}
+                                    </p>
+                                </div>
+                                <div className="flex justify-between">
+                                    <p>{education.courseName}</p>
+                                </div>
                             </div>
-                            <div className="flex justify-between p-2">
-                                <p>{education.courseName}</p>
-                            </div>
+                        )
+                    })
+                ) : (
+                    <div className="flex flex-col">
+                        <div className="flex justify-between">
+                            <p>{instituteName}</p>
+                            <p>{period}</p>
                         </div>
-                    )
-                })
-            ) : (
-                <div className="flex flex-col">
-                    <div className="flex justify-between p-2">
-                        <p>{instituteName}</p>
-                        <p>{period}</p>
+                        <div className="flex justify-between">
+                            <p>{degree}</p>
+                        </div>
                     </div>
-                    <div className="flex justify-between p-2">
-                        <p>{degree}</p>
-                    </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     )
 }

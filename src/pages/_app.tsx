@@ -39,11 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <AuthProvider>
                 <Toaster />
                 <NextNProgress options={{ showSpinner: false }} />
-                {router.pathname.includes('/builder') ? (
-                    <BuilderNavbar />
-                ) : (
-                    <Navbar />
-                )}
+                {router.pathname.includes('/builder') ? null : <Navbar />}
                 <Component {...pageProps} />
             </AuthProvider>
         </>

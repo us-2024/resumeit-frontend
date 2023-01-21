@@ -16,10 +16,10 @@ export const EducationSection: FC<{
 }> = ({ education, educations, setEducations }) => {
     const [instituteName, setInstituteName] = useState<string>('')
     const [courseName, setCourseName] = useState<string>('')
-    const [fromMonth, setFromMonth] = useState<number | null>(null)
-    const [toMonth, setToMonth] = useState<number | null>(null)
-    const [fromYear, setFromYear] = useState<number | null>(null)
-    const [toYear, setToYear] = useState<number | null>(null)
+    const [fromMonth, setFromMonth] = useState<string>('')
+    const [toMonth, setToMonth] = useState<string>('')
+    const [fromYear, setFromYear] = useState<string>('')
+    const [toYear, setToYear] = useState<string>('')
     const [isPresentEducation, setIsPresentEducation] = useState<boolean>(false)
     const [description, setDescription] = useState<string>('')
     const [isEdit, setIsEdit] = useState<boolean>(false)
@@ -62,8 +62,10 @@ export const EducationSection: FC<{
 
             setInstituteName('')
             setCourseName('')
-            setFromYear(null)
-            setToYear(null)
+            setFromYear('')
+            setToMonth('')
+            setFromMonth('')
+            setToYear('')
             setIsPresentEducation(false)
             setDescription('')
         } else {
@@ -80,10 +82,13 @@ export const EducationSection: FC<{
     //? effects
     useEffect(() => {
         if (education) {
+            console.log(education)
             setInstituteName(education.instituteName)
             setCourseName(education.courseName)
             setFromYear(education.fromYear)
             setToYear(education.toYear)
+            setFromMonth(education.fromMonth)
+            setToMonth(education.toMonth)
             setIsPresentEducation(education.isPresentEducation)
             setDescription(education.description)
         }

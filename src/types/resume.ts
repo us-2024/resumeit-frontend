@@ -1,28 +1,31 @@
 export interface ResumeProps {
+    templateId?: string
+    resumeId?: string
     personal: {
         name: string
         email: string
-        phone_number: string
+        phoneNumber: string
         address: string
+        website: string
         about: string
     }
     experience: Array<{
-        company_name: string
-        job_role: string
+        companyName: string
+        jobRole: string
         location: string
-        from_year: string
-        to_year: string
-        from_month: string
-        to_month: string
+        fromYear: string
+        toYear: string
+        fromMonth: string
+        toMonth: string
         description: string
     }>
     education: Array<{
-        institute_name: string
-        course_name: string
-        from_year: string
-        to_year: string
-        from_month: string
-        to_month: string
+        instituteName: string
+        courseName: string
+        fromYear: string
+        toYear: string
+        fromMonth: string
+        toMonth: string
         description: string
         present: boolean
     }>
@@ -34,6 +37,9 @@ export interface ResumeProps {
         name: string
         url: string
         description: string
+    }>
+    skills: Array<{
+        name: string
     }>
     languages: Array<{
         name: string

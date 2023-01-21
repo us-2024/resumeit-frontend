@@ -1,7 +1,9 @@
 import { BuilderNavbar } from '@/components/Builder/BuilderNavbar'
 import { LeftPane } from '@/components/Builder/LeftPane/LeftPane'
+import { Modal } from '@/components/Builder/Mail/Modal'
 import { RightPane } from '@/components/Builder/RightPane/RightPane'
 import { addResume } from '@/services/addResume'
+import { editResume } from '@/services/editResume'
 import { getResumeById } from '@/services/getResumeById'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -15,7 +17,7 @@ export default function Builder() {
 
     //? states
     const [templateId, setTemplateId] = useState<string>('1')
-    // const [resume, setResume] = useState<any>(null)
+    const [resume, setResume] = useState<any>(null)
 
     // Personal
     const [name, setName] = useState<string>('')
@@ -34,6 +36,8 @@ export default function Builder() {
 
     // About
     const [about, setAbout] = useState<string>('')
+
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     //? variables
     const IMG_URL =
@@ -55,9 +59,9 @@ export default function Builder() {
     }, [])
 
     //? functions
-    const addResumeHandler = async () => {
-        await addResume({
-            templateId: templateId,
+    const editResumeHandler = async () => {
+        await editResume({
+            resumeId: id,
             certifications: certifications,
             education: educations,
             projects: projects,
@@ -76,33 +80,41 @@ export default function Builder() {
     }
 
     //? effects
-    // useEffect(() => {
-    //     if (id)
-    //         getResumeById(id)
-    //             .then((res) => {
-    //                 console.log(res)
-    //                 setName(res.data.personal.name)
-    //                 setCertifications(res.data.certifications)
-    //                 setAbout(res.data.personal.about)
-    //                 setAddress(res.data.personal.address)
-    //                 setEducations(res.data.education)
-    //                 setEmail(res.data.personal.email)
-    //                 setExperiences(res.data.experience)
-    //                 setLanguages(res.data.languages)
-    //                 setPinCode(res.data.personal.pinCode)
-    //                 setSkills(res.data.skills)
-    //                 setProjects(res.data.projects)
-    //                 setWebsite(res.data.personal.website)
-    //                 setPhoneNumber(res.data.personal.phoneNumber)
-    //             })
-    //             .catch((err) => console.log(err))
-    // }, [id])
+    useEffect(() => {
+        if (id)
+            getResumeById(id)
+                .then((res) => {
+                    console.log(res)
+                    setName(res.data.personal.name)
+                    setCertifications(res.data.certifications)
+                    setAbout(res.data.personal.about)
+                    setAddress(res.data.personal.address)
+                    setEducations(res.data.education)
+                    setEmail(res.data.personal.email)
+                    setExperiences(res.data.experience)
+                    setLanguages(res.data.languages)
+                    setPinCode(res.data.personal.pinCode)
+                    setSkills(res.data.skills)
+                    setProjects(res.data.projects)
+                    setWebsite(res.data.personal.website)
+                    setPhoneNumber(res.data.personal.phoneNumber)
+                })
+                .catch((err) => console.log(err))
+    }, [id])
 
-    // console.log(resume)
+    console.log(resume)
 
     return (
         <div className="grid grid-cols-5 w-full">
-            <BuilderNavbar resumeHandler={addResumeHandler} />
+            <Modal
+                setShowModal={setShowModal}
+                showModal={showModal}
+            />
+            <BuilderNavbar
+                showModal={showModal}
+                setShowModal={setShowModal}
+                resumeHandler={editResumeHandler}
+            />
             <LeftPane
                 data={{
                     personal: {

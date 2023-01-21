@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, FC } from 'react'
+import { Dispatch, SetStateAction, FC, useState, useEffect } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 const MONTHS: any = {
     1: '01',
     2: '02',
@@ -24,23 +26,30 @@ export const DateSelect: FC<{
     year: any
 }> = ({ setMonth, setYear, disabled, month, year, gridCols, placeholder }) => {
     //? functions
-    console.log(month, year)
-    function handleChange(e: any) {
-        const { value } = e.target
-        const arr = value.split('-')
-        setYear(parseInt(arr[0]))
-        setMonth(parseInt(arr[1]))
-    }
+    const [startDate, setStartDate] = useState(new Date())
 
+    //? effects
+    useEffect(() => {
+        if (!(month && year)) {
+            setYear(startDate.getFullYear().toString())
+            setMonth(startDate.getMonth().toString())
+        } else {
+            if (month !== '0') {
+                setStartDate(
+                    new Date(
+                        `${year}-${month.length > 1 ? month : `0${month}`}-01`
+                    )
+                )
+            }
+        }
+    }, [setMonth, setYear, month, year])
+
+    // console.log(month, year)
     return (
         <div className={`relative col-span-${gridCols}`}>
-            <input
-                type="month"
-                disabled={disabled}
-                value={year && month ? `${year}-${MONTHS[month]}` : undefined}
-                onChange={handleChange}
-                placeholder={placeholder}
-                className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            <DatePicker
+                selected={startDate}
+                onChange={(date: Date) => setStartDate(date)}
             />
         </div>
     )

@@ -3,8 +3,8 @@ import { api } from '@/utils/api'
 import { backendApi } from '@/utils/backendApi'
 import { toast } from 'react-hot-toast'
 
-export const addResume = async ({
-    templateId,
+export const editResume = async ({
+    resumeId,
     certifications,
     education,
     experience,
@@ -15,7 +15,7 @@ export const addResume = async ({
 }: ResumeProps) => {
     try {
         const { data } = await backendApi.post(
-            '/add/resume?template_id=' + templateId,
+            '/update/resume?resume_id=' + resumeId,
             {
                 certifications,
                 projects,

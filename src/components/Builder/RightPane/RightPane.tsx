@@ -6,7 +6,7 @@ export const RightPane: FC<{ templateId: string; data?: any }> = ({
 }) => {
     if (templateId === '1')
         return (
-            <div className="p-10">
+            <div className="pt-24 px-16 overflow-auto  h-screen fixed top-0">
                 <TemplateOne data={data} />
             </div>
         )

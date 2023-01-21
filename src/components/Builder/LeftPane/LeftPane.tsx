@@ -11,11 +11,11 @@ import { ProjectsSection } from './ProjectsSection'
 
 export const LeftPane: FC<{ data: any }> = ({ data }) => {
     //? states
-
+    // console.log(data)
     //? useEffects
 
     return (
-        <div className="col-span-2 grid grid-cols-4 gap-3 py-20 overflow-y-auto min-h-screen bg-gray-50 shadow-2xl">
+        <div className="col-span-2 grid grid-cols-4 gap-3 py-20 overflow-y-auto h-screen bg-gray-50 shadow-2xl">
             <div className="grid grid-cols-4 col-span-4 px-4 gap-3">
                 <p className="col-span-4 text-lg text-primary font-semibold">
                     Personal Information
@@ -48,16 +48,16 @@ export const LeftPane: FC<{ data: any }> = ({ data }) => {
                     setState={data.personal.setPhoneNumber}
                 />
                 <Input
-                    inputName="pinCode"
-                    placeholder="e.g. 987654"
                     gridCols={2}
-                    inputType="text"
-                    labelName="Pin Code"
-                    state={data.personal.pinCode}
-                    setState={data.personal.setPinCode}
+                    inputName="website"
+                    placeholder="e.g. https://www.personal.com"
+                    inputType="url"
+                    labelName="Website"
+                    state={data.personal.website}
+                    setState={data.personal.setWebsite}
                 />
                 <Input
-                    gridCols={4}
+                    gridCols={2}
                     inputName="address"
                     placeholder="e.g. 310, XYZ City, India"
                     inputType="address"
@@ -65,7 +65,7 @@ export const LeftPane: FC<{ data: any }> = ({ data }) => {
                     state={data.personal.address}
                     setState={data.personal.setAddress}
                 />
-                <TextArea
+                {/* <TextArea
                     gridCols={4}
                     inputName="about"
                     inputType="text"
@@ -73,7 +73,7 @@ export const LeftPane: FC<{ data: any }> = ({ data }) => {
                     placeholder="e.g. I am a passionate Software Developer..."
                     setState={data.personal.setAbout}
                     state={data.personal.about}
-                />
+                /> */}
             </div>
             <div className="flex items-center px-4 justify-between w-full">
                 <p className="font-semibold text-lg text-primary">Experience</p>

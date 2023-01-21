@@ -5,6 +5,7 @@ import { signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth'
 import { firebaseAuth } from '../utils/firebaseInit'
 import { useRouter } from 'next/router'
 import { toast } from 'react-hot-toast'
+import { backendApi } from '@/utils/backendApi'
 
 const AuthContext = createContext({
     isAuthenticated: false,
@@ -50,12 +51,13 @@ export const AuthProvider = ({ children }: any) => {
                 const { accessToken } = user
 
                 if (accessToken) {
-                    cookies.set('accessToken', accessToken, { expires: 60 })
+                    cookies.set('accessToken', accessToken, { expires: 120 })
 
                     api.defaults.headers.Authorization = `Bearer ${accessToken}`
                     const { data } = await api.get('/api/auth/')
                     const { result: userData } = data
-                    const { picture, name } = userData
+                    const { picture, name, user_id } = userData
+                    backendApi.defaults.headers['user-id'] = user_id
 
                     if (userData) {
                         setUser(userData)
@@ -74,10 +76,14 @@ export const AuthProvider = ({ children }: any) => {
         const accessToken = cookies.get('accessToken')
         if (accessToken) {
             api.defaults.headers.Authorization = `Bearer ${accessToken}`
+
             try {
                 const { data } = await api.get('/api/auth/')
                 const { result: user } = data
-                const { picture, name } = user
+                const { picture, name, user_id } = user
+
+                backendApi.defaults.headers['user-id'] = user_id
+
                 if (user) {
                     setUser(user)
                     setPhotoURL(picture)
