@@ -6,7 +6,7 @@ export const convertToPDF = () => {
     html2canvas(input!).then((canvas) => {
         const imgData = canvas.toDataURL('image/png')
         const pdf = new jsPDF()
-        pdf.addImage(imgData, 'JPEG', 0, 0, 100, 200)
+        pdf.addImage(imgData, 'JPEG', 0, 0, 200, 200)
         pdf.save('download.pdf')
     })
 }

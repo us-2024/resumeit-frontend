@@ -33,9 +33,9 @@ export default function Dashboard() {
         }
     }, [loading, user])
     return (
-        <div className="flex flex-col  w-full min-h-screen">
-            <div className="flex flex-col gap-2">
-                <p className="font-semibold text-xl">Choose Templates</p>
+        <div className="flex flex-col p-8 gap-8 w-full min-h-screen">
+            <div className="flex flex-col gap-2 w-full">
+                <p className="font-bold text-xl">Choose Templates</p>
                 <div className="flex items-center">
                     <Link href={'/dashboard/builder/1'}>
                         <div className="flex flex-col gap-4 border-2 shadow-md hover:shadow-xl cursor-pointer rounded-md">
@@ -45,7 +45,7 @@ export default function Dashboard() {
                                 height={400}
                                 alt="template_image"
                             />
-                            <div className="flex bg-gray-100 px-8 py-4 gap-2 justify-between items-center">
+                            <div className="flex bg-gray-100 px-5 py-4 gap-2 justify-between items-center">
                                 <p className="font-semibold">
                                     Edit this template
                                 </p>
@@ -56,9 +56,9 @@ export default function Dashboard() {
                 </div>
             </div>
             {resumes && resumes.length ? (
-                <div className="flex flex-col">
-                    <p className="font-semibold">Recently Edited</p>
-                    <div className="flex gap-3 items-center">
+                <div className="flex flex-col gap-4">
+                    <p className="font-bold text-lg">Recently Edited</p>
+                    <div className="flex gap-10 w-full items-center">
                         {resumes.map((data: any) => {
                             console.log(data)
                             return (
@@ -73,7 +73,7 @@ export default function Dashboard() {
                                             height={400}
                                             alt="template_image"
                                         />
-                                        <div className="flex bg-gray-100 px-8 py-4 gap-2 justify-between items-center">
+                                        <div className="flex bg-gray-100 px-5 py-4 gap-2 justify-between items-center">
                                             <p className="font-semibold">
                                                 Edit
                                             </p>

@@ -50,10 +50,10 @@ export const BuilderNavbar: FC<{
                             <BsFileEarmarkPdf className="h-6 w-6 text-gray-800" />
                             <p className="font-semibold ">PDF</p>
                         </div>
-                        <div className="px-8 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center ">
+                        {/* <div className="px-8 py-3 cursor-pointer group hover:bg-black/10 w-full flex space-x-2 items-center ">
                             <AiOutlineHtml5 className="h-6 w-6 text-gray-800" />
                             <p className="font-semibold ">HTML</p>
-                        </div>
+                        </div> */}
                     </div>
                 )}
             </div>
