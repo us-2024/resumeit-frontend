@@ -9,7 +9,7 @@ import { convertPdf } from '@/services/convertPdf'
 import { useAuth } from '@/contexts/auth'
 import { convertURIToBlob } from '@/utils/convertURI2Blob'
 import { html2image } from '@/utils/html2image'
-import { convertToPDF } from '@/utils/convertToPdf'
+import { convertToPDF } from '@/utils/convertToPDF'
 
 export const BuilderNavbar: FC<{
     resumeHandler: Function
