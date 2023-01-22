@@ -9,7 +9,7 @@ export const TemplateOne: FC<{ data?: any }> = ({ data }) => {
     return (
         <div
             id="templateOne"
-            className="flex flex-col gap-3 w-full font-serif py-4"
+            className="flex flex-col gap-3 w-full font-serif px-6 py-4"
         >
             <Header data={data.personal} />
             <br></br>
