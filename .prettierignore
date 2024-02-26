@@ -1,6 +1,0 @@
-.node_modules
-.next
-.env
-.env.example
-package-lock.json
-build
