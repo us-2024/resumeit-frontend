@@ -1,5 +1,29 @@
 import React, { createContext, useReducer, useContext, useMemo } from "react";
 
+type Experience = {
+  role: string;
+  company: string;
+  location: string;
+  startDate: Date;
+  endDate: Date;
+  description: string;
+  isCurrent: boolean;
+};
+
+type Education = {
+  institution: string;
+  location: string;
+  degree: string;
+  startDate: Date;
+  endDate: Date;
+  description: string;
+};
+
+type Skill = {
+  category: string;
+  skills: string[];
+};
+
 interface State {
   name: string;
   about: string;
@@ -8,6 +32,9 @@ interface State {
   website: string;
   github: string;
   linkedin: string;
+  experience: Experience[];
+  education: Education[];
+  skills: Skill[];
 }
 
 const initialState: State = {
@@ -18,6 +45,26 @@ const initialState: State = {
   website: "",
   github: "",
   linkedin: "",
+  experience: [],
+  education: [],
+  skills: [
+    {
+      category: "Technical Skills",
+      skills: [
+        "C++",
+        "React",
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "Java",
+        "C#",
+      ],
+    },
+    {
+      category: "Languages",
+      skills: ["English", "Spanish", "French"],
+    },
+  ],
 };
 
 // Define the actions
@@ -28,7 +75,13 @@ type Action =
   | { type: "SET_PHONENUMBER"; payload: string }
   | { type: "SET_WEBSITE"; payload: string }
   | { type: "SET_GITHUB"; payload: string }
-  | { type: "SET_LINKEDIN"; payload: string };
+  | { type: "SET_LINKEDIN"; payload: string }
+  | { type: "SET_EXPERIENCE"; payload: any }
+  | { type: "SET_EDUCATION"; payload: any }
+  | { type: "ADD_EXPERIENCE"; payload: any }
+  | { type: "ADD_EDUCATION"; payload: any }
+  | { type: "ADD_SKILL"; payload: any }
+  | { type: "SET_SKILLS"; payload: any };
 
 // Define the reducer
 function reducer(state: State, action: Action): State {
@@ -47,6 +100,25 @@ function reducer(state: State, action: Action): State {
       return { ...state, github: action.payload };
     case "SET_LINKEDIN":
       return { ...state, linkedin: action.payload };
+    case "ADD_EXPERIENCE":
+      return { ...state, experience: [...state.experience, action.payload] };
+    case "ADD_EDUCATION":
+      return { ...state, education: [...state.education, action.payload] };
+    case "SET_EXPERIENCE":
+      return { ...state, experience: action.payload };
+    case "SET_EDUCATION":
+      return { ...state, education: action.payload };
+    case "ADD_SKILL":
+      const { category, skill } = action.payload;
+      const _skills = state.skills.map((s) => {
+        if (s.category === category) {
+          s.skills.push(skill);
+        }
+        return s;
+      });
+      return { ...state, skills: _skills };
+    case "SET_SKILLS":
+      return { ...state, skills: action.payload };
 
     default:
       return state;
@@ -64,6 +136,10 @@ interface ContextProps {
   website: string;
   github: string;
   linkedin: string;
+  experience: Experience[];
+  education: Education[];
+  skills: Skill[];
+
   setName: (name: string) => void;
   setAbout: (about: string) => void;
   setEmail: (email: string) => void;
@@ -71,6 +147,12 @@ interface ContextProps {
   setWebsite: (website: string) => void;
   setGithub: (github: string) => void;
   setLinkedin: (linkedin: string) => void;
+  setExperience: (experience: any) => void;
+  setEducation: (education: any) => void;
+  addExperience: (experience: any) => void;
+  addEducation: (education: any) => void;
+  addSkill: (category: string, skill: string) => void;
+  setSkills: (skills: Skill[]) => void;
 }
 
 const ResumeContext = createContext<ContextProps | undefined>(undefined);
@@ -81,7 +163,18 @@ const ResumeContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { name, about, email, phoneNumber, website, github, linkedin } = state;
+  const {
+    name,
+    about,
+    email,
+    phoneNumber,
+    website,
+    github,
+    linkedin,
+    experience,
+    education,
+    skills,
+  } = state;
 
   const setName = (name: string) =>
     dispatch({ type: "SET_NAME", payload: name });
@@ -97,6 +190,18 @@ const ResumeContextProvider: React.FC<{ children: React.ReactNode }> = ({
     dispatch({ type: "SET_GITHUB", payload: github });
   const setLinkedin = (linkedin: string) =>
     dispatch({ type: "SET_LINKEDIN", payload: linkedin });
+  const addExperience = (experience: any) =>
+    dispatch({ type: "ADD_EXPERIENCE", payload: experience });
+  const addEducation = (education: any) =>
+    dispatch({ type: "ADD_EDUCATION", payload: education });
+  const setExperience = (experience: any) =>
+    dispatch({ type: "SET_EXPERIENCE", payload: experience });
+  const setEducation = (education: any) =>
+    dispatch({ type: "SET_EDUCATION", payload: education });
+  const addSkill = (category: string, skill: string) =>
+    dispatch({ type: "ADD_SKILL", payload: { category, skill } });
+  const setSkills = (skills: Skill[]) =>
+    dispatch({ type: "SET_SKILLS", payload: skills });
 
   const memoizedValue = useMemo(
     () => ({
@@ -109,6 +214,9 @@ const ResumeContextProvider: React.FC<{ children: React.ReactNode }> = ({
       website,
       github,
       linkedin,
+      experience,
+      education,
+      skills,
       setName,
       setAbout,
       setEmail,
@@ -116,10 +224,15 @@ const ResumeContextProvider: React.FC<{ children: React.ReactNode }> = ({
       setWebsite,
       setGithub,
       setLinkedin,
+      setExperience,
+      setEducation,
+      addExperience,
+      addEducation,
+      addSkill,
+      setSkills,
     }),
     [
       state,
-      dispatch,
       name,
       about,
       email,
@@ -127,6 +240,9 @@ const ResumeContextProvider: React.FC<{ children: React.ReactNode }> = ({
       website,
       github,
       linkedin,
+      experience,
+      education,
+      skills,
     ]
   );
 

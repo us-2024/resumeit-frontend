@@ -7,7 +7,7 @@ import { RightPane } from "./RightPane";
 export const BuilderView = () => {
   return (
     <ResumeContextProvider>
-      <div className="h-screen grid grid-cols-2 gap-3">
+      <div className="h-screen grid grid-cols-2 gap-3 max-h-screen">
         <LeftPane />
         <RightPane />
       </div>

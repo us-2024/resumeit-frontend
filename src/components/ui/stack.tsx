@@ -2,8 +2,8 @@ export const Stack = ({
   children,
   className,
   direction = "col",
-  align = "center",
-  justify = "center",
+  align = "start",
+  justify = "start",
   gap = 4,
   wrap = "nowrap",
 }: {
