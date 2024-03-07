@@ -38,15 +38,67 @@ interface State {
 }
 
 const initialState: State = {
-  name: "",
-  email: "",
-  phoneNumber: "",
-  about: "",
-  website: "",
-  github: "",
-  linkedin: "",
-  experience: [],
-  education: [],
+  name: "Subin S K",
+  email: "subinsk284@gmail.com",
+  phoneNumber: "+91 8094774065",
+  about:
+    "Experienced MERN Stack Developer adept at designing, implementing, and maintaining scalable web applications. Proficient in using MongoDB, Express.js, React.js, and Node.js to develop full-stack solutions. Skilled in leveraging modern development tools and libraries to optimize performance and enhance user experience. Proven track record of collaborating with cross-functional teams to deliver high-quality software products on time and within budget.",
+  website: "https://subinsk.me",
+  github: "https://github.com/subinsk",
+  linkedin: "https://linkedin.com/in/subinsk",
+  experience: [
+    {
+      role: "Software Engineer",
+      company: "Google",
+      location: "Mountain View, CA",
+      startDate: new Date("2019-01-01"),
+      endDate: new Date("2021-01-01"),
+      description:
+        "Worked on the Google Search team to develop new features and improve the overall search experience for users. Collaborated with a team of engineers to design and implement new features and improve existing ones. Developed and maintained scalable and efficient code for various components of the search engine.",
+      isCurrent: true,
+    },
+    {
+      role: "Software Engineer",
+      company: "Facebook",
+      location: "Menlo Park, CA",
+      startDate: new Date("2017-01-01"),
+      endDate: new Date("2019-01-01"),
+      description:
+        "Worked on the Facebook Ads team to develop new features and improve the overall ad creation experience for advertisers. Collaborated with a team of engineers to design and implement new features and improve existing ones. Developed and maintained scalable and efficient code for various components of the ad creation process.",
+      isCurrent: false,
+    },
+    {
+      role: "Software Engineer",
+      company: "Microsoft",
+      location: "Redmond, WA",
+      startDate: new Date("2015-01-01"),
+      endDate: new Date("2017-01-01"),
+      description:
+        "Worked on the Microsoft Office team to develop new features and improve the overall user experience for Office applications. Collaborated with a team of engineers to design and implement new features and improve existing ones. Developed and maintained scalable and efficient code for various components of Office applications.",
+      isCurrent: false,
+    },
+  ],
+  education: [
+    {
+      institution: "Stanford University",
+      location: "Stanford, CA",
+      degree: "Master of Science in Computer Science",
+      startDate: new Date("2013-01-01"),
+      endDate: new Date("2015-01-01"),
+      description:
+        "Studied computer science with a focus on machine learning and artificial intelligence. Completed a master's thesis on the topic of deep learning for computer vision.",
+    },
+    {
+      institution: "University of California, Berkeley",
+      location: "Berkeley, CA",
+      degree:
+        "Bachelor of Science in Electrical Engineering and Computer Science",
+      startDate: new Date("2009-01-01"),
+      endDate: new Date("2013-01-01"),
+      description:
+        "Studied electrical engineering and computer science. Completed a senior project on the topic of real-time embedded systems.",
+    },
+  ],
   skills: [
     {
       category: "Technical Skills",

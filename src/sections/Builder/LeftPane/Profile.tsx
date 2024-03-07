@@ -78,6 +78,7 @@ export default function Profile() {
               placeholder="Type something about yourself..."
               id="about"
               value={about}
+              rows={8}
               onChange={(e) => setAbout(e.target.value)}
             />
           </div>

@@ -2,6 +2,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Grid,
   Input,
   Stack,
 } from "@/components";
@@ -40,32 +41,33 @@ export default function Skills() {
       <AccordionContent>
         <Stack direction="col">
           {skills.map((skill, index) => (
-            <Stack
-              key={`index-${index}`}
-              direction="row"
-              align="center"
-              gap={8}
-            >
-              <Input
-                name={skill.category}
-                value={skill.category}
-                onChange={(e) =>
-                  onChangeHandler(skill.category, e.target.value)
-                }
-              />
-              <TagsInput
-                value={skill.skills}
-                onChange={(tags) => {
-                  setSkills(
-                    skills.map((s) =>
-                      s.category === skill.category ? { ...s, skills: tags } : s
-                    )
-                  );
-                }}
-                name={`${skill}-tags`}
-                placeHolder="Enter Skill and Press Enter"
-              />
-            </Stack>
+            <div key={`skill-${index}`} className="grid grid-cols-7 gap-3">
+              <div className="col-span-2">
+                <Input
+                  name={skill.category}
+                  value={skill.category}
+                  onChange={(e) =>
+                    onChangeHandler(skill.category, e.target.value)
+                  }
+                />
+              </div>
+              <div className="col-span-5">
+                <TagsInput
+                  value={skill.skills}
+                  onChange={(tags) => {
+                    setSkills(
+                      skills.map((s) =>
+                        s.category === skill.category
+                          ? { ...s, skills: tags }
+                          : s
+                      )
+                    );
+                  }}
+                  name={`${skill}-tags`}
+                  placeHolder="Enter Skill and Press Enter"
+                />
+              </div>
+            </div>
           ))}
         </Stack>
       </AccordionContent>

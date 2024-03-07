@@ -9,4 +9,5 @@ export * from "./stack";
 export * from "./label";
 export * from "./textarea";
 export * from "./date-picker";
+export * from "./grid";
 export * from "./date-range-picker";

@@ -6,9 +6,10 @@ export default function Profile() {
     useResumeContext();
   return (
     <Stack>
-      <Stack>
-        <Typography variant="h1">{name}</Typography>
-      </Stack>
+      <Typography variant="h1" className="mx-auto">
+        {name}
+      </Typography>
+
       <Stack direction="row">
         <Typography variant="p">{phoneNumber}</Typography>
         <Typography variant="p">{email}</Typography>

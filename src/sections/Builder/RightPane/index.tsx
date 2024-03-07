@@ -10,7 +10,7 @@ export const RightPane = () => {
         Preview
       </Typography>
 
-      <TransformWrapper>
+      {/* <TransformWrapper>
         {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
           <React.Fragment>
             <div className="tools">
@@ -23,12 +23,12 @@ export const RightPane = () => {
                 width: "100%",
                 height: "100%",
               }}
-            >
-              <Preview />
-            </TransformComponent>
+            > */}
+      <Preview />
+      {/* </TransformComponent>
           </React.Fragment>
         )}
-      </TransformWrapper>
+      </TransformWrapper> */}
     </div>
   );
 };
